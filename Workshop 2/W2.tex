@@ -129,6 +129,13 @@ By observing $S(f)$, there are 8 spikes throughout the entire spectrum. They are
 However, only four of them are located in passband (positive axis), the rest of them located in the LHS and are not meaningful ($f_2$, $f_4$, $f_6$, and $f_8$). Using the values of $f_c = 100$kHz and $f_m = 2$kHz, we expect peaks to be at 96kHz, 98kHz, 102kHz and 104kHz with magnitude of $\frac{A_c}{4}$,$\frac{A_c}{8}$,$\frac{A_c}{8}$ and $\frac{A_c}{4}$ respectively. 96kHz and 98kHz are the LSBs and 102kHz and 104kHz are the USBs.
 
 \item % b & c
+Figure \ref{fig:2bcircuit} shows the circuit that generate DSB-SC signal $s(t)$.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale = 1.3]{2bcircuit.PNG}
+    \caption{\label{fig:2bcircuit}DSB-SC signal $s(t)$ generation circuit.}
+\end{figure}
+
 Figure \ref{fig:q2} shows the signal generated for both parts b) and c). The top half of the picture shows the DSBSC signal and the bottom half is the FFT output centered at 100kHz.
 \begin{figure}[H]
     \centering
@@ -136,7 +143,6 @@ Figure \ref{fig:q2} shows the signal generated for both parts b) and c). The top
     \caption{\label{fig:q2}DSB-SC signal $s(t)$ in time domain and frequency domain}
 \end{figure}
 
-\newpage
 \item %c explanation
 It can be seen that the baseband signal has been successfully modulated into pass band (as shown in Figure \ref{fig:q2}). We had 4 spikes across the passband (located in 96kHz, 98kHz, 102kHz and 104kHz) which are expected from our calculations. The discrepancy here would be that the outcomes of the FFT only shows the real frequencies. In our calculations there were also negative frequency components of the DSBSC signal $S(f)$. In terms of magnitudes, the spikes on 98kHz and 102kHz were calculated to have half the magnitude of 96kHz and 104kHz peaks ($\frac{A_c}{8}$ compared to $\frac{A_c}{4}$). While the exact measurements from the experimental data did not show the difference as starkly (in dB 50\% $\approx$ 0.7). but it does indicate that the middle two spikes have a smaller magnitude. This might be due to the frequency components not being separate enough; they contribute to the magnitude of each other. We can't estimate this in our theoretical calculations as all the spikes are impulses in theory.
 
@@ -154,6 +160,7 @@ We changed the frequency of the 4kHz (2$f_m$) signal in $m(t)$ to 10kHz to see t
 \end{figure}
 \end{enumerate}
 
+\newpage
 \section*{Question 3}
 \begin{enumerate}[label=(\alph*)]
 \item The received DSB-SC signal $s(t)$ is given from previous question as
@@ -197,6 +204,13 @@ From the above calculated expression for the spectrum, we would only interested 
 \end{align*}
 
 \item %c
+The circuit of demodulating DSB-SC signal $s(t)$ is shown in Figure \ref{fig:3ccircuit}.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.9]{3ccircuit.PNG}
+    \caption{\label{fig:3ccircuit}Circuit of demodulation of DSB-SC signal $s(t)$.}
+\end{figure}
+
 Figure \ref{fig:q3c} shows our demodulation using a stolen carrier frequency after passing through a 60kHz LPF. The light blue (CH2) signal is $m(t)$, the original message and the yellow (CH1) signal is the recovered output signal. It can be seen in time domain, the demodulated signal are quite in phase with the original signal. In frequency domain, it showed two spikes located in 2kHz and 4kHz which are as same as the message signal. This indicates a very good demodulation of the received DSBSC signal. From theoretical calculations, the spike at 2kHz should have half magnitude of the spike at 4Hz. However, the spike at 2kHz is only slightly lower than the spike at 4Hz in our experimental results, which can be attributed into experimental instruments/setting errors. 
 \begin{figure}[H]
     \centering
@@ -207,7 +221,7 @@ Figure \ref{fig:q3c} shows our demodulation using a stolen carrier frequency aft
 \item %d 
 The Hilbert transform in the frequency domain is simply $-j\sgn(f)S(f)$. The time-domain expression for Hilbert transform of $s(t)$ is denoted as $\tilde{s} (t)$ below,
 \begin{align*}
-\tilde{s_1} (t)&=s(t)\ast \frac{1}{\pi t}\\
+\tilde{s} (t)&=s(t)\ast \frac{1}{\pi t}\\
             &= \Biggr( \frac{A_c}{2} \cos(2\pi f_m t) \cos(2\pi f_c t)+ A_c \cos(2\pi 2 f_mt) \cos(2\pi f_c t) \Biggr) \ast \frac{1}{\pi t} \\
             & = \Biggr[ \frac{A_c}{4} (\cos(2\pi (f_c + f_m) t) + \cos(2\pi (f_c - f_m) t))+ \frac{A_c}{2} (\cos(2\pi (f_c + 2f_m) t) + \cos(2\pi (f_c - 2f_m) t)) \Biggr] \ast \frac{1}{\pi t}\\
             &= \frac{A_c}{4} (\sin(2\pi (f_c + f_m) t) + \sin(2\pi (f_c - f_m) t))+ \frac{A_c}{2} (\sin(2\pi (f_c + 2f_m) t) + \sin(2\pi (f_c - 2f_m) t))\\
@@ -221,16 +235,22 @@ We omitted the $\sgn(t)$ from above due to our signal being causal and real, the
 \end{align*}
 
 \item %e
+The circuit of demodulating DSB-SC signal $s(t)$ using Hilbert transform is shown in Figure \ref{fig:3ecircuit}.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.7]{3ecircuit.PNG}
+    \caption{\label{fig:3ecircuit}Circuit of demodulation of DSB-SC signal $s(t)$ using Hilbert transform.}
+\end{figure}
+
 The following figure shows our demodulation using the Hilbert Transform. The light blue (CH2) signal is $m(t)$, the original message and the yellow (CH1) signal is the recovered output. As seen from Figure \ref{fig:q3e}, the Hilbert transform gives an amplitude boost compared to the DSBSC demodulation $m(t)$. The original signal only recovered from DSBSC has an amplitude of $\frac{A_c^2}{2}$ whereas the Hilbert transform recovered signal has an amplitude of $A_c^2$.
 \begin{figure}[H]
     \centering
-    \includegraphics[scale = 0.20]{Q3e.jpg}
+    \includegraphics[scale = 0.18]{Q3e.jpg}
     \caption{\label{fig:q3e}Demodulated DSB-SC signal in time domain and frequency domain comparing with the original message signal $m(t)$}
 \end{figure}
 \end{enumerate}
 
-%%%%%%% so far so good.
-
+\newpage
 \section*{Question 4}
 \begin{enumerate}[label=(\alph*)]
 \item %a
@@ -254,6 +274,13 @@ to solve these constrains, we need to firstly look into $m(t)$
 this yields a minimum for $m(t)$ to be $-\frac{33}{32}$ when $\cos(2\pi f_m t)=-\frac{1}{8}$. Substitute this into the first constrain, we will have $\mu<\frac{32}{33}$, which also satisfy the rest two constrains. Note that we want to have the largest value of $\mu$ from the first two constrains whilst satisfying the last constrain. To have the largest value from the second constrain, we will need to have $\mu<\frac{1}{m(t)_{min}}$ which gives us $m<\frac{32}{33}$ as well. Thus we can say that the largest theoretical value of $\mu$ is $\frac{32}{33}$.
 
 \item %b
+The circuit of modulation and demodulation (Question 4 and Question 5) of AM signal $s_{AM}(t)$ is shown in Figure \ref{fig:45circuit}.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.7]{45circuit.PNG}
+    \caption{\label{fig:45circuit}Circuit of modulation and demodulation of AM signal $s_{AM}(t)$.}
+\end{figure}
+
 The AM modulated signal $s_2 (t)$ with modulation index larger and smaller than the maximum value are shown in Figure \ref{fig:q4blarge} and Figure \ref{fig:q4bsmall} respectively. With $\mu$ in a desired range (smaller than its maximum value), $s_2 (t)$ will have 5 frequency components: one in carrier frequency ($f_c=100kHz$) and two pairs of frequency components symmetric with respect to the carrier frequency ($f_c=100kHz$).\\
 Recall what we had for the amplitude modulation:
 \begin{align*}
@@ -270,7 +297,7 @@ Leaving those frequency components that we are interested in (positive $f$), we 
 \begin{align*}
     S_{AM}(f) = \frac{A_c}{2} \delta(f-f_c)+ \frac{\mu A_c}{8}\delta (f-(f_c-f_m)) + \frac{\mu A_c}{8} \delta (f-(f_c+f_m)) \\ +\frac{\mu A_c}{4}\delta (f-(f_c-2f_m)) +\frac{\mu A_c}{4} \delta (f-(f_c+2f_m) 
 \end{align*}
-this indicates that we should have five spikes which are located in:
+This indicates that we should have five spikes which are located in:
 \begin{multicols}{3}
 \begin{itemize}
     \item $f_1=f_c=100$kHz
@@ -300,17 +327,18 @@ Please refer to sub-question (b), the graph and analysis of frequency domain gra
 \section*{Question 5}
 \begin{figure}[H]
     \centering
-    \includegraphics[scale = 0.55]{Q5.PNG}
+    \includegraphics[scale = 0.6]{Q5.PNG}
     \caption{\label{fig:q5}AM Demodulation in time and frequency domain.}
 \end{figure}
-The AM signal $s_{AM}(t)$ has been demodulated following instructions and the time/frequency domain waveform has been shown in Figure \ref{fig:q5}. It can be seen that the spectrum has contained significant frequency components near baseband which is a property of a message signal. Due to the time constrain, time-domain signal has not been scaled up to see its similarity with the original message signal. But from the aspect of spectrum performance, it seems that the demodulated signal is resembling the original message signal $m(t)$. 
+The AM signal $s_{AM}(t)$ has been demodulated following instructions and the time/frequency domain waveform has been shown in Figure \ref{fig:q5} (circuit can be found in Figure \ref{fig:45circuit}). It can be seen that the spectrum has contained significant frequency components near baseband which is a property of a message signal. Due to the time constrain, time-domain signal has not been scaled up to see its similarity with the original message signal. But from the aspect of spectrum performance, it seems that the demodulated signal is resembling the original message signal $m(t)$. 
 
+\newpage
 \section*{Question 6}
 Due to time limitations we could not experimentally complete this section. However, to our knowledge of the speech module, it will output a "message" signal similar to Figure \ref{fig:q6} from recorded speech. We have demonstrated the DSBSC/AM modulations and respective FFT transforms for a 3.5 second speech signal we recorded in MATLAB. By observing our data, similar outputs should be expected in experimentation. We do note that the TIMS speech module is limited to a 300Hz - 3.4kHz input. With our speech signal as well we can see that AM could be seen as far less efficient due to the non-suppressed carrier being transmitted. 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.4]{W2Q6DSBSC.png}
-    \includegraphics[scale=0.4]{W2Q6AM.png}
+    \includegraphics[scale=0.45]{W2Q6DSBSC.png}
+    \includegraphics[scale=0.45]{W2Q6AM.png}
     \caption{a) DSBSC modulated signal b) AM modulated signal}
     \label{fig:q6}
 \end{figure}

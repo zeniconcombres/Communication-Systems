@@ -2,7 +2,7 @@
 \documentclass[11pt]{article}
 \linespread{1.25}
 \usepackage[utf8]{inputenc}
-\usepackage{graphicx, amsmath, array, graphics, amssymb, epsfig, psfrag, geometry, alltt, subfiles, blindtext, enumitem,float,pdfpages}
+\usepackage{graphicx, amsmath, array, graphics, amssymb, epsfig, psfrag, geometry, alltt, subfiles, blindtext, enumitem,float,pdfpages,multicol}
 \DeclareMathOperator{\sinc}{sinc}
 \usepackage[export]{adjustbox}
 \usepackage{fancyhdr}
@@ -49,44 +49,88 @@ Group 1: Tao Song [1015193], YiLin Inez Zheng [702279], \\
 Workshop: Monday 10:00am - 12:00pm (Shalanika, Bigi), Due: 21/10/19  
 \end{center}
 
+%insert cover page
+
+% probably need a few more explanations for pre workshop Qs
+
+\section*{Pre-Workshop Questions}
+\begin{enumerate}
+\item AM Modulation and Demodulation
+\begin{enumerate}
+    \item %a
+    It is usually hard to directly measure the SNR (watts $W$) in a real system as it is easy to cancel out the message signal but not zero the noise. Hence we measure $(\frac{S + N}{N})_o$ to calculate $(\frac{S}{N})_o$. Say $v$ denotes the RMS AC voltage, 
+    \begin{align*}
+        \bigg(\frac{S}{N}\bigg)_o = \frac{v_{S+N}^2 - v_{N}^2}{v_{N}^2} = \frac{v_{S+N}^2}{v_{N}^2} - 1
+    \end{align*}
+    \item %b
+    % received power and signal band noise,,, 
+    \begin{align*}
+    \bigg(\frac{C}{N}\bigg) = \frac{1}{2} \bigg( \frac{S}{N} \bigg)_b
+    \end{align*}
+\end{enumerate}
+
+\item FM Modulation and Demodulation
+\begin{enumerate}
+    \item %a
+    Calculated in the same way as AM above. 
+    \item %b
+    \begin{align*}
+        \bigg(\frac{S}{N}\bigg)_b = \frac{P_r}{(G v_{bb})^2}
+    \end{align*}
+    
+\end{enumerate}
+\end{enumerate}
 
 \section*{Question 1}
 \begin{enumerate}[label=(\alph*)]
-\item 
+\item %a
+
+\item %b
 
 \end{enumerate}
-
 
 \section*{Question 2}
 \begin{enumerate}[label=(\alph*)]
-\item 
+\item %a
+
+\item %b
+
+\item %c
+
+\item %d
+
+\item %e
+The modulated signal has both DC and AC components so a digital multimeter is not able to measure this accurately and thereby CNR cannot be accurately measured. 
+\begin{align*}
+    \bigg(\frac{C}{N}\bigg) &= \frac{P_r}{P_N} = \frac{P_r}{2N_oW}\\
+    &= \frac{1}{2} \bigg( \frac{S}{N} \bigg)_b
+\end{align*}
+
+\item %f
+
+\item %g
+
+\item %h
 
 \end{enumerate}
-
 
 \section*{Question 3}
 \begin{enumerate}[label=(\alph*)]
-\item 
+\item %a
+
+\item %b
+
+\item %c
+
+\item %d
+
+\item %e
+
+\item %f
+
+\item %g
+
+\item %h
 
 \end{enumerate}
-
-\section*{Question 4}
-\begin{enumerate}[label=(\alph*)]
-\item 
-
-\end{enumerate}
-
-\section*{Question 5}
-\begin{enumerate}[label=(\alph*)]
-\item 
-
-\end{enumerate}
-
-\section*{Question 6}
-\begin{enumerate}[label=(\alph*)]
-\item 
-
-\end{enumerate}
-
-
 \end{document}
